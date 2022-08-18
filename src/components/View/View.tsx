@@ -7,6 +7,10 @@ type PropsOf<
   C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
 > = JSX.LibraryManagedAttributes<C, React.ComponentPropsWithoutRef<C>>;
 
+type ComponentProp<C extends React.ElementType> = {
+  component?: C;
+};
+
 type InheritedProps<C extends React.ElementType, Props = {}> = ExtendedProps<
   PropsOf<C>,
   Props
@@ -18,7 +22,7 @@ export type PolymorphicRef<C extends React.ElementType> =
 export type PolymorphicComponentProps<
   C extends React.ElementType,
   Props = {}
-> = InheritedProps<C, Props> & {
+> = InheritedProps<C, Props & ComponentProp<C>> & {
   ref?: PolymorphicRef<C>;
 };
 
@@ -27,7 +31,7 @@ export type ViewProps<C extends React.ElementType> =
 
 type ViewComponent = <C extends React.ElementType = "div">(
   props: ViewProps<C>
-) => React.ReactElement;
+) => React.ReactElement | null;
 
 export const View: ViewComponent = forwardRef(
   <C extends React.ElementType = "div">(

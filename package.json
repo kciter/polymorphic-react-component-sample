@@ -1,7 +1,8 @@
 {
   "name": "polymorphic-react-component-sample",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Lee Sun-Hyoup <kciter@naver.com>",
   "dependencies": {
     "@emotion/cache": "^11.10.1",
     "@emotion/serialize": "^1.1.0",
